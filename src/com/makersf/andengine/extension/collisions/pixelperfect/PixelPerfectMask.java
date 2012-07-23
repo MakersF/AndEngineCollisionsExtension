@@ -7,6 +7,8 @@ public class PixelPerfectMask {
 	final private int PIXEL_PER_BLOCK = 32*32;
 	final boolean[] mBitsBlock; //each block holds 32x32 pixel
 	final boolean[][] mBlocksFlag; //each block can be Empty, Not Fully Filled or Filled.
+	//a more intelligent thing would be to make spatial splits based on the "Solid" pixels(to have the max number of rectangles empty of fully filled) 
+	
 	public PixelPerfectMask(Bitmap bitmap, float pTextureX, float pTextureY,
 			float pTextureWidth, float pTextureHeight, int pAlphaThreshold) {
 		
@@ -32,7 +34,7 @@ public class PixelPerfectMask {
 				int base_y = Y + r * 32;
 				
 				int block = r * rows + c;
-				int previousPixels = block* PIXEL_PER_BLOCK;
+				int previousPixels = block * PIXEL_PER_BLOCK;
 				mBlocksFlag[block][0] = true;
 				
 				for(int x = 0; x < 32; x++) {
