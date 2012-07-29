@@ -1,6 +1,6 @@
 package com.makersf.andengine.extension.collisions.entity.sprite;
 
-import org.andengine.entity.shape.IShape;
+import org.andengine.entity.shape.RectangularShape;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.opengl.shader.ShaderProgram;
 import org.andengine.opengl.vbo.VertexBufferObject.DrawType;
@@ -33,7 +33,7 @@ public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixel
 		return ((PixelPerfectTiledTextureRegion)mTextureRegion).getPixelMask(getCurrentTileIndex());
 	}
 
-	public <T extends IPixelPerfectShape&IShape>boolean collidesWith(final T pOtherPPShape) {
+	public <T extends RectangularShape&IPixelPerfectShape>boolean collidesWith(final T pOtherPPShape) {
 		return super.collidesWith(pOtherPPShape) && 
 				PixelPerfectCollisionChecker.checkCollision(this, this.getPixelPerfectMask(), pOtherPPShape, pOtherPPShape.getPixelPerfectMask());
 	}
