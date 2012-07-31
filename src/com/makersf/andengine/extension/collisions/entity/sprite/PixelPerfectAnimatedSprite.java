@@ -11,10 +11,9 @@ import com.makersf.andengine.extension.collisions.opengl.texture.region.PixelPer
 import com.makersf.andengine.extension.collisions.pixelperfect.PixelPerfectCollisionChecker;
 import com.makersf.andengine.extension.collisions.pixelperfect.IPixelPerfectMask;
 import com.makersf.andengine.extension.collisions.pixelperfect.RectangularPixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.RectangularPixelPerfectMaskPool;
 
 public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixelPerfectShape{
-
-	private RectangularPixelPerfectMask mReusableRectangularPixelPerfectMask = new RectangularPixelPerfectMask(0, 0);
 	
 	public PixelPerfectAnimatedSprite(float pX, float pY, float pWidth,
 			float pHeight, PixelPerfectTiledTextureRegion pTiledTextureRegion,
@@ -43,12 +42,16 @@ public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixel
 				return PixelPerfectCollisionChecker.checkCollision(this, this.getPixelPerfectMask(), pOtherShape, ((IPixelPerfectShape)pOtherShape).getPixelPerfectMask());
 			else
 			{
-				//syncronized since if you check 2 different RectShapes in 2 different thread, the mReusableRecShape can be changed while it is still used by the other thread
-				//but i think it is really unlikely that parellal check can occour, then this syncronization is almost for free
-				synchronized (mReusableRectangularPixelPerfectMask) {
-					mReusableRectangularPixelPerfectMask.setTo((int) pOtherShape.getWidth(), (int) pOtherShape.getHeight());
-					return PixelPerfectCollisionChecker.checkCollision(this, this.getPixelPerfectMask(), pOtherShape, mReusableRectangularPixelPerfectMask);
-				}
+				RectangularPixelPerfectMaskPool rectangularPixelPerfectMaskPool = RectangularPixelPerfectMaskPool.getInstance();
+				
+				RectangularPixelPerfectMask reusableRectangularPixelPerfectMask = rectangularPixelPerfectMaskPool.obtainPoolItem();
+				reusableRectangularPixelPerfectMask.setTo((int) pOtherShape.getWidth(), (int) pOtherShape.getHeight());
+				
+				boolean result = PixelPerfectCollisionChecker.checkCollision(this, this.getPixelPerfectMask(), pOtherShape, reusableRectangularPixelPerfectMask);
+				
+				rectangularPixelPerfectMaskPool.recyclePoolItem(reusableRectangularPixelPerfectMask);
+				
+				return result;
 			}
 		}
 		else
