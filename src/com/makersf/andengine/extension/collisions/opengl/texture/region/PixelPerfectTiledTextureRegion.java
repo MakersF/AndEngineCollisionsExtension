@@ -8,13 +8,13 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 import android.graphics.Bitmap.Config;
 
-import com.makersf.andengine.extension.collisions.pixelperfect.PixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.BitmapPixelPerfectMask;
 
 public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 	
-	PixelPerfectMask[] mMasks;
+	BitmapPixelPerfectMask[] mMasks;
 	
-	public PixelPerfectTiledTextureRegion(final ITexture pTexture, final boolean pPerformSameTextureSanityCheck, final PixelPerfectMask[] pPixelMasks, final ITextureRegion ... pTextureRegions) {
+	public PixelPerfectTiledTextureRegion(final ITexture pTexture, final boolean pPerformSameTextureSanityCheck, final BitmapPixelPerfectMask[] pPixelMasks, final ITextureRegion ... pTextureRegions) {
 		super(pTexture, pPerformSameTextureSanityCheck, pTextureRegions);
 		mMasks = pPixelMasks;
 	}
@@ -39,7 +39,7 @@ public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 	}
 	
 	public void buildMask(final IBitmapTextureAtlasSource pTextureSource, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight, final int pTileColumns, final int pTileRows,final boolean pRotated, final int pAlphaThreshold, final Config pBitmapConfig) {
-		mMasks = new PixelPerfectMask[mTileCount];
+		mMasks = new BitmapPixelPerfectMask[mTileCount];
 		final int tileWidth = pTextureWidth / pTileColumns;
 		final int tileHeight = pTextureHeight / pTileRows;
 		
@@ -50,20 +50,20 @@ public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 				final int y = pTextureY + tileRow * tileHeight;
 				
 				if(!pRotated)
-					mMasks[tileIndex] = new PixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), x, y, tileWidth, tileHeight, pAlphaThreshold);
+					mMasks[tileIndex] = new BitmapPixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), x, y, tileWidth, tileHeight, pAlphaThreshold);
 				else
-					mMasks[tileIndex] = new PixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), y, x, tileHeight, tileWidth, pAlphaThreshold);
+					mMasks[tileIndex] = new BitmapPixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), y, x, tileHeight, tileWidth, pAlphaThreshold);
 			}
 		}
 	}
 
 	public void buildTileMask(final int pTileIndex, final IBitmapTextureAtlasSource pTextureSource, final boolean pRotated, final int pAlphaThreshold, final Config pBitmapConfig) {
 		if(mMasks == null)
-			mMasks = new PixelPerfectMask[mTileCount];
+			mMasks = new BitmapPixelPerfectMask[mTileCount];
 		if(!pRotated)
-			mMasks[pTileIndex] = new PixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), getTextureX(pTileIndex), getTextureY(pTileIndex), getWidth(pTileIndex), getHeight(pTileIndex), pAlphaThreshold);
+			mMasks[pTileIndex] = new BitmapPixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), getTextureX(pTileIndex), getTextureY(pTileIndex), getWidth(pTileIndex), getHeight(pTileIndex), pAlphaThreshold);
 		else
-			mMasks[pTileIndex] = new PixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), getTextureY(pTileIndex),getTextureX(pTileIndex), getHeight(pTileIndex), getWidth(pTileIndex), pAlphaThreshold);
+			mMasks[pTileIndex] = new BitmapPixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), getTextureY(pTileIndex),getTextureX(pTileIndex), getHeight(pTileIndex), getWidth(pTileIndex), pAlphaThreshold);
 	}
 	
 	@Override
@@ -79,14 +79,14 @@ public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 		return new PixelPerfectTiledTextureRegion(this.mTexture, false, this.mMasks, textureRegions);
 	}
 	
-	public PixelPerfectMask getCurrentPixelMask() {
+	public BitmapPixelPerfectMask getCurrentPixelMask() {
 		if(mMasks[mCurrentTileIndex] != null)
 			return mMasks[mCurrentTileIndex];
 		else
 			throw new IllegalAccessError("The mask has not build yet");
 	}
 	
-	public PixelPerfectMask getPixelMask(final int pTileIndex) {
+	public BitmapPixelPerfectMask getPixelMask(final int pTileIndex) {
 		if(mMasks[pTileIndex] != null)
 			return mMasks[pTileIndex];
 		else

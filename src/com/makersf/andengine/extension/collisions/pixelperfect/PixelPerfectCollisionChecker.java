@@ -6,7 +6,7 @@ import org.andengine.util.adt.transformation.TransformationUtils;
 
 public class PixelPerfectCollisionChecker {
 	
-	public static boolean checkCollision(final RectangularShape pA, final PixelPerfectMask pMaskA, final RectangularShape pB, final PixelPerfectMask pMaskB) {
+	public static boolean checkCollision(final RectangularShape pA, final IPixelPerfectMask pMaskA, final RectangularShape pB, final IPixelPerfectMask pMaskB) {
 		
 		//Transformation from B's local space to A's local space
 		final Transformation bLocToALoc = pB.getLocalToSceneTransformation();

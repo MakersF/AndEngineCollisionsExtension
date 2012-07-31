@@ -7,7 +7,7 @@ import org.andengine.opengl.texture.region.TextureRegion;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
-import com.makersf.andengine.extension.collisions.pixelperfect.PixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.BitmapPixelPerfectMask;
 
 public class PixelPerfectTextureRegion extends TextureRegion {
 
@@ -21,7 +21,7 @@ public class PixelPerfectTextureRegion extends TextureRegion {
 	// Fields
 	// ===========================================================
 	
-	private PixelPerfectMask mMask;
+	private BitmapPixelPerfectMask mMask;
 	// ===========================================================
 	// Constructors
 	// ===========================================================
@@ -31,7 +31,7 @@ public class PixelPerfectTextureRegion extends TextureRegion {
 	}
 	
 	public PixelPerfectTextureRegion(ITexture pTexture, float pTextureX,
-			float pTextureY, float pTextureWidth, float pTextureHeight, boolean pRotated, PixelPerfectMask pMask) {
+			float pTextureY, float pTextureWidth, float pTextureHeight, boolean pRotated, BitmapPixelPerfectMask pMask) {
 		super(pTexture, pTextureX, pTextureY, pTextureWidth, pTextureHeight, SCALE_DEFAULT,
 				pRotated);
 		this.mMask = pMask;//no need to make a copy of it since it is never changed
@@ -40,12 +40,12 @@ public class PixelPerfectTextureRegion extends TextureRegion {
 	public void buildMask(IBitmapTextureAtlasSource pTextureSource, final int pAlphaThreshold, final Config pBitmapConfig) {
 		Bitmap bitmap = pTextureSource.onLoadBitmap(pBitmapConfig);
 		if(mRotated)
-			mMask = new PixelPerfectMask(bitmap, mTextureX, mTextureY, mTextureWidth, mTextureHeight, pAlphaThreshold);
+			mMask = new BitmapPixelPerfectMask(bitmap, mTextureX, mTextureY, mTextureWidth, mTextureHeight, pAlphaThreshold);
 		else
-			mMask = new PixelPerfectMask(bitmap, mTextureY, mTextureX, mTextureHeight, mTextureWidth, pAlphaThreshold);
+			mMask = new BitmapPixelPerfectMask(bitmap, mTextureY, mTextureX, mTextureHeight, mTextureWidth, pAlphaThreshold);
 	}
 	
-	public PixelPerfectMask getPixelMask() {
+	public BitmapPixelPerfectMask getPixelMask() {
 		if(mMask != null)
 			return mMask;
 		else

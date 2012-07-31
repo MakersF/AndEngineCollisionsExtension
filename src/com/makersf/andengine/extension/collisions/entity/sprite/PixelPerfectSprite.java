@@ -9,7 +9,7 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import com.makersf.andengine.extension.collisions.entity.shape.IPixelPerfectShape;
 import com.makersf.andengine.extension.collisions.opengl.texture.region.PixelPerfectTextureRegion;
 import com.makersf.andengine.extension.collisions.pixelperfect.PixelPerfectCollisionChecker;
-import com.makersf.andengine.extension.collisions.pixelperfect.PixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.IPixelPerfectMask;
 
 public class PixelPerfectSprite extends Sprite implements IPixelPerfectShape{
 
@@ -28,7 +28,7 @@ public class PixelPerfectSprite extends Sprite implements IPixelPerfectShape{
 	}
 
 	@Override
-	public PixelPerfectMask getPixelPerfectMask() {
+	public IPixelPerfectMask getPixelPerfectMask() {
 		return ((PixelPerfectTextureRegion)mTextureRegion).getPixelMask();
 	}
 	
