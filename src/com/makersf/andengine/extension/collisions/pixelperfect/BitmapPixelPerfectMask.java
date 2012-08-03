@@ -27,11 +27,11 @@ public class BitmapPixelPerfectMask implements IPixelPerfectMask {
 	}
 	
 	public boolean isSolid(final int pX, final int pY) {
-		try {
+		if(0 <= pX && pX <= mBitsBlock.length &&
+				0 <= pY && pY <= mBitsBlock[0].length)
 			return mBitsBlock[pX][pY];
-		} catch (ArrayIndexOutOfBoundsException e) {
+		else
 			return false;
-		}
 	}
 
 }
