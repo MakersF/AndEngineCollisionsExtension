@@ -53,10 +53,14 @@ public class PixelPerfectTextureRegionFactory{
 	 * @param pAssetPath
 	 * @param pTexturePositionX
 	 * @param pTexturePositionY
-	 * @param pRotated
 	 * @param pAlphaThreshold Must be between 0 and 255. If the alpha of the pixel > pAlphaThreshold the pixel is set not-colliding
 	 * @return
 	 */
+	public static PixelPerfectTextureRegion createFromAsset(final BitmapTextureAtlas pTexture, final Context pContext, final String pAssetPath, final int pTexturePositionX, final int pTexturePositionY, final int pAlphaThreshold) {
+        final IBitmapTextureAtlasSource textureSource = AssetBitmapTextureAtlasSource.create(pContext.getAssets(), sAssetBasePath + pAssetPath);
+        return createFromSource(pTexture, textureSource, pTexturePositionX, pTexturePositionY, false, pAlphaThreshold);
+    }
+	
     public static PixelPerfectTextureRegion createFromAsset(final BitmapTextureAtlas pTexture, final Context pContext, final String pAssetPath, final int pTexturePositionX, final int pTexturePositionY, final boolean pRotated, final int pAlphaThreshold) {
         final IBitmapTextureAtlasSource textureSource = AssetBitmapTextureAtlasSource.create(pContext.getAssets(), sAssetBasePath + pAssetPath);
         return createFromSource(pTexture, textureSource, pTexturePositionX, pTexturePositionY, pRotated, pAlphaThreshold);

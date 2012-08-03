@@ -15,6 +15,12 @@ import com.makersf.andengine.extension.collisions.pixelperfect.RectangularPixelP
 
 public class PixelPerfectSprite extends Sprite implements IPixelPerfectShape{
 	
+	public PixelPerfectSprite(float pX, float pY,
+			PixelPerfectTextureRegion pTextureRegion,
+			VertexBufferObjectManager pVertexBufferObjectManager) {
+		super(pX, pY, pTextureRegion, pVertexBufferObjectManager);
+	}
+	
 	public PixelPerfectSprite(float pX, float pY, float pWidth, float pHeight,
 			PixelPerfectTextureRegion pTextureRegion,
 			VertexBufferObjectManager pVertexBufferObjectManager) {

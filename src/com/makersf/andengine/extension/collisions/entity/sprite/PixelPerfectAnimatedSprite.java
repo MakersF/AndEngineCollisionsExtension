@@ -15,6 +15,12 @@ import com.makersf.andengine.extension.collisions.pixelperfect.RectangularPixelP
 
 public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixelPerfectShape{
 	
+	public PixelPerfectAnimatedSprite(float pX, float pY, PixelPerfectTiledTextureRegion pTiledTextureRegion,
+			VertexBufferObjectManager pVertexBufferObjectManager) {
+		super(pX, pY, pTiledTextureRegion,
+				pVertexBufferObjectManager);
+	}
+	
 	public PixelPerfectAnimatedSprite(float pX, float pY, float pWidth,
 			float pHeight, PixelPerfectTiledTextureRegion pTiledTextureRegion,
 			VertexBufferObjectManager pVertexBufferObjectManager) {
