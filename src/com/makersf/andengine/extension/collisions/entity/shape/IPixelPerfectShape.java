@@ -1,6 +1,6 @@
 package com.makersf.andengine.extension.collisions.entity.shape;
 
-import com.makersf.andengine.extension.collisions.pixelperfect.IPixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.masks.IPixelPerfectMask;
 
 public interface IPixelPerfectShape {
 

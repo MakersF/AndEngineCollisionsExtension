@@ -4,6 +4,8 @@ import org.andengine.entity.shape.RectangularShape;
 import org.andengine.util.adt.transformation.Transformation;
 import org.andengine.util.adt.transformation.TransformationUtils;
 
+import com.makersf.andengine.extension.collisions.pixelperfect.masks.IPixelPerfectMask;
+
 public class PixelPerfectCollisionChecker {
 	
 	public static boolean checkCollision(final RectangularShape pA, final IPixelPerfectMask pMaskA, final RectangularShape pB, final IPixelPerfectMask pMaskB) {

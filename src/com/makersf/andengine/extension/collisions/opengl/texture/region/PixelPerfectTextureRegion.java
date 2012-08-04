@@ -7,7 +7,7 @@ import org.andengine.opengl.texture.region.TextureRegion;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
-import com.makersf.andengine.extension.collisions.pixelperfect.BitmapPixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.masks.BitmapPixelPerfectMask;
 
 public class PixelPerfectTextureRegion extends TextureRegion {
 
@@ -40,9 +40,9 @@ public class PixelPerfectTextureRegion extends TextureRegion {
 	public void buildMask(IBitmapTextureAtlasSource pTextureSource, final int pAlphaThreshold, final Config pBitmapConfig) {
 		Bitmap bitmap = pTextureSource.onLoadBitmap(pBitmapConfig);
 		if(mRotated)
-			mMask = new BitmapPixelPerfectMask(bitmap, mTextureX, mTextureY, mTextureWidth, mTextureHeight, pAlphaThreshold);
+			mMask = new BitmapPixelPerfectMask(bitmap, 0, 0, mTextureWidth, mTextureHeight, pAlphaThreshold);
 		else
-			mMask = new BitmapPixelPerfectMask(bitmap, mTextureY, mTextureX, mTextureHeight, mTextureWidth, pAlphaThreshold);
+			mMask = new BitmapPixelPerfectMask(bitmap, 0, 0, mTextureHeight, mTextureWidth, pAlphaThreshold);
 	}
 	
 	public BitmapPixelPerfectMask getPixelMask() {

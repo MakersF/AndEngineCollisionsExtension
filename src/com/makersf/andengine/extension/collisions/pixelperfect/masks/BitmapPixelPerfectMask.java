@@ -1,14 +1,14 @@
-package com.makersf.andengine.extension.collisions.pixelperfect;
+package com.makersf.andengine.extension.collisions.pixelperfect.masks;
 
 import android.graphics.Bitmap;
 
 public class BitmapPixelPerfectMask implements IPixelPerfectMask {
-	
+
 	final boolean[][] mBitsBlock;
-	
+
 	public BitmapPixelPerfectMask(Bitmap bitmap, float pTextureX, float pTextureY,
 			float pTextureWidth, float pTextureHeight, int pAlphaThreshold) {
-		
+
 		final int bitmaskWidth = (int) pTextureWidth;
 		final int bitmaskHeight = (int) pTextureHeight;
 		int X = (int) pTextureX;
@@ -18,14 +18,14 @@ public class BitmapPixelPerfectMask implements IPixelPerfectMask {
 			throw new IllegalArgumentException("pAlphaThreshold should be in [0,255] range. " + pAlphaThreshold + " provided.");
 
 		mBitsBlock = new boolean[bitmaskWidth][bitmaskHeight];
-	
+
 		for(int x = 0; x < bitmaskWidth; x++) {
 			for(int y = 0; y < bitmaskHeight; y++) {
 				mBitsBlock[x][y] = ((bitmap.getPixel(X + x, Y + y) >> 24) & 0x000000FF) > pAlphaThreshold;
 			}
 		}
 	}
-	
+
 	public boolean isSolid(final int pX, final int pY) {
 		if(0 <= pX && pX <= mBitsBlock.length &&
 				0 <= pY && pY <= mBitsBlock[0].length)
@@ -34,4 +34,13 @@ public class BitmapPixelPerfectMask implements IPixelPerfectMask {
 			return false;
 	}
 
+	@Override
+	public int getWidth() {
+		return mBitsBlock.length;
+	}
+
+	@Override
+	public int getHeight() {
+		return mBitsBlock[0].length;
+	}
 }

@@ -8,7 +8,7 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 import android.graphics.Bitmap.Config;
 
-import com.makersf.andengine.extension.collisions.pixelperfect.BitmapPixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.masks.BitmapPixelPerfectMask;
 
 public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 	
