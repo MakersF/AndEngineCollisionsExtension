@@ -41,6 +41,10 @@ public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixel
 		return ((PixelPerfectTiledTextureRegion)mTextureRegion).getPixelMask(getCurrentTileIndex());
 	}
 
+	public IPixelPerfectMask getPixelMask(final int pTileIndex) {
+		return ((PixelPerfectTiledTextureRegion)mTextureRegion).getPixelMask(pTileIndex);
+	}
+
 	public boolean collidesWith(final RectangularShape pOtherShape) {
 		if(super.collidesWith(pOtherShape))
 		{
