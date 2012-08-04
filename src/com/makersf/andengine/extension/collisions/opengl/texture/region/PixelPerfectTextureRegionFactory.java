@@ -91,6 +91,7 @@ public class PixelPerfectTextureRegionFactory{
     public static PixelPerfectTiledTextureRegion createTiledFromSource(final BitmapTextureAtlas pTexture, final IBitmapTextureAtlasSource pTextureSource, final int pTexturePositionX, final int pTexturePositionY, final int pTileColumns, final int pTileRows, final int pAlphaThreshold) {
         final PixelPerfectTiledTextureRegion tiledTextureRegion = PixelPerfectTiledTextureRegion.create(pTexture, pTexturePositionX, pTexturePositionY, pTextureSource.getTextureWidth(), pTextureSource.getTextureHeight(), pTileColumns, pTileRows, false);
         pTexture.addTextureAtlasSource(pTextureSource, pTexturePositionX, pTexturePositionY);
+        tiledTextureRegion.buildMask(pTextureSource, 0, 0, pTextureSource.getTextureWidth(), pTextureSource.getTextureHeight(), pTileColumns, pTileRows, false, pAlphaThreshold, pTexture.getBitmapTextureFormat().getBitmapConfig());
         return tiledTextureRegion;
     }
     
