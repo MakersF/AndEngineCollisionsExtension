@@ -27,8 +27,8 @@ public class BitmapPixelPerfectMask implements IPixelPerfectMask {
 	}
 
 	public boolean isSolid(final int pX, final int pY) {
-		if(0 <= pX && pX <= mBitsBlock.length &&
-				0 <= pY && pY <= mBitsBlock[0].length)
+		if(0 <= pX && pX < mBitsBlock.length &&
+				0 <= pY && pY < mBitsBlock[0].length)
 			return mBitsBlock[pX][pY];
 		else
 			return false;
