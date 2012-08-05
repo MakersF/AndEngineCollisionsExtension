@@ -50,13 +50,16 @@ public class PixelPerfectCollisionChecker {
 		
 		//find the pixel in B corresponding to the top-left vertex of the collision bounding box
 		float[] initialPixelLocB = TransformationUtils.transform(aLocToBLoc, minX, minY, new float[2]);
+		final float[] pixelLocB = new float[2];
 		
-		for(int y = Math.round(minY); y <  Math.round(maxY); y++) {
-			float[] pixelLocB = initialPixelLocB;
-			
-			for(int x =  Math.round(minX); x <  Math.round(maxX); x++) {
+		for(int y = (int) minY; y <  (int) maxY; y++) {
+			pixelLocB[0] = initialPixelLocB[0];
+			pixelLocB[1] = initialPixelLocB[1];
+
+			for(int x =  (int) minX; x <  (int) maxX; x++) {
 				
-				if(pMaskA.isSolid(x, y) && pMaskB.isSolid( Math.round(pixelLocB[0]), Math.round(pixelLocB[1])))
+				if(pMaskA.isSolid(x, y) &&
+						pMaskB.isSolid((int) pixelLocB[0], (int) pixelLocB[1]))
 					return true;
 				
 				//next iteration will move to the next pixel on the right in A's local space. We need to update the "pointer" to the pixel in B by adding the displacement
