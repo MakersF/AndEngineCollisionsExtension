@@ -6,6 +6,12 @@ import org.andengine.util.adt.transformation.TransformationUtils;
 
 import com.makersf.andengine.extension.collisions.pixelperfect.masks.IPixelPerfectMask;
 
+/**
+ * 
+ * @author Francesco Zoffoli
+ * @since 01.08.2012
+ *
+ */
 public class PixelPerfectCollisionChecker {
 	
 	public static boolean checkCollision(final RectangularShape pA, final IPixelPerfectMask pMaskA, final RectangularShape pB, final IPixelPerfectMask pMaskB) {

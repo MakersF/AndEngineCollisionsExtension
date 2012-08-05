@@ -12,6 +12,12 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 
+/**
+ * 
+ * @author Francesco Zoffoli
+ * @since 01.08.2012
+ *
+ */
 public class PixelPerfectTextureRegionFactory{
 	// ===========================================================
 	// Constants

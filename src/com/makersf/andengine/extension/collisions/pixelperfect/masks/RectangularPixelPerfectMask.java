@@ -1,6 +1,11 @@
 package com.makersf.andengine.extension.collisions.pixelperfect.masks;
 
-
+/**
+ * 
+ * @author Francesco Zoffoli
+ * @since 01.08.2012
+ *
+ */
 public class RectangularPixelPerfectMask implements IPixelPerfectMask {
 
 	int mWidth;

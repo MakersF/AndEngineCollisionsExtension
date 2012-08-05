@@ -9,6 +9,12 @@ import android.graphics.Color;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Environment;
 
+/**
+ * 
+ * @author Francesco Zoffoli
+ * @since 01.08.2012
+ *
+ */
 public class MaskUtils {
 
 	public static void writeMaskToSDCard(IPixelPerfectMask pMask, String pRelativePathFromSDRoot, String pFileName) {

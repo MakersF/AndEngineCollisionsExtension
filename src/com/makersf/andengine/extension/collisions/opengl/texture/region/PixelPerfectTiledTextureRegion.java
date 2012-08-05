@@ -10,6 +10,12 @@ import android.graphics.Bitmap.Config;
 
 import com.makersf.andengine.extension.collisions.pixelperfect.masks.BitmapPixelPerfectMask;
 
+/**
+ * 
+ * @author Francesco Zoffoli
+ * @since 01.08.2012
+ *
+ */
 public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 	
 	BitmapPixelPerfectMask[] mMasks;

@@ -13,6 +13,12 @@ import com.makersf.andengine.extension.collisions.pixelperfect.masks.IPixelPerfe
 import com.makersf.andengine.extension.collisions.pixelperfect.masks.RectangularPixelPerfectMask;
 import com.makersf.andengine.extension.collisions.pixelperfect.masks.RectangularPixelPerfectMaskPool;
 
+/**
+ * 
+ * @author Francesco Zoffoli
+ * @since 01.08.2012
+ *
+ */
 public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixelPerfectShape{
 	
 	public PixelPerfectAnimatedSprite(float pX, float pY, PixelPerfectTiledTextureRegion pTiledTextureRegion,

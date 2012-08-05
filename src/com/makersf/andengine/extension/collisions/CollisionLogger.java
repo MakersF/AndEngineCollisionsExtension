@@ -3,6 +3,12 @@ package com.makersf.andengine.extension.collisions;
 import android.os.SystemClock;
 import android.util.Log;
 
+/**
+ * 
+ * @author Francesco Zoffoli
+ * @since 01.08.2012
+ *
+ */
 public class CollisionLogger {
 
 	private long mCollisionStartTime;

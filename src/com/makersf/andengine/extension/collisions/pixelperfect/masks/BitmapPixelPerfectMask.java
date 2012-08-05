@@ -2,6 +2,12 @@ package com.makersf.andengine.extension.collisions.pixelperfect.masks;
 
 import android.graphics.Bitmap;
 
+/**
+ * 
+ * @author Francesco Zoffoli
+ * @since 01.08.2012
+ *
+ */
 public class BitmapPixelPerfectMask implements IPixelPerfectMask {
 
 	final boolean[][] mBitsBlock;
