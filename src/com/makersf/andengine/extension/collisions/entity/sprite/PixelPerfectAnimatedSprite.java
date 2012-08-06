@@ -21,6 +21,8 @@ import com.makersf.andengine.extension.collisions.pixelperfect.masks.Rectangular
  */
 public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixelPerfectShape{
 	
+	private static boolean USE_PIXELPERFECT_COLLISION_FOR_EVERY_RECTANGULAR_SHAPE = true;
+
 	public PixelPerfectAnimatedSprite(float pX, float pY, PixelPerfectTiledTextureRegion pTiledTextureRegion,
 			VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pX, pY, pTiledTextureRegion,
@@ -58,6 +60,9 @@ public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixel
 				return PixelPerfectCollisionChecker.checkCollision(this, this.getPixelPerfectMask(), pOtherShape, ((IPixelPerfectShape)pOtherShape).getPixelPerfectMask());
 			else
 			{
+				if(!USE_PIXELPERFECT_COLLISION_FOR_EVERY_RECTANGULAR_SHAPE)
+					return true;
+				
 				RectangularPixelPerfectMaskPool rectangularPixelPerfectMaskPool = RectangularPixelPerfectMaskPool.getInstance();
 				
 				RectangularPixelPerfectMask reusableRectangularPixelPerfectMask = rectangularPixelPerfectMaskPool.obtainPoolItem();
@@ -73,4 +78,9 @@ public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixel
 		else
 			return false;
 	}
+
+	public static void setUsePixelPerfectCollisionForEveryRectangularShape(final boolean pUsePixelPerfectCollisionForEveryRectangularShape) {
+		USE_PIXELPERFECT_COLLISION_FOR_EVERY_RECTANGULAR_SHAPE = pUsePixelPerfectCollisionForEveryRectangularShape;
+	}
+
 }
