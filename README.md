@@ -3,7 +3,9 @@
 This is an extension that aims to bring different collision methods (perfect or approximations) to AndEngine GLES2 
 ## Supported Collision Methods:
  * Pixel-Perfect Collision (supports: translation, scale, rotation, screw)
- ** It also support pixel-perfect collision between pixel-perfect shapes and retangular shapes, without the need for the latter to be a pixel-perfect shape.
+ * It also support pixel-perfect collision between pixel-perfect shapes and retangular shapes, without the need for the latter to be a pixel-perfect shape.
+ * Alpha values different from 0 (you set the threshold that identify if a pixel is solid or not)
+ * You ca unse the utils methods to check the performances in your app or to output the collision mask to check if it is what you need
 
 ##Changes Needed to AndEngine
 In order to make this work you'll need to aply some very small modifications to your copy of AndEngine sources.
