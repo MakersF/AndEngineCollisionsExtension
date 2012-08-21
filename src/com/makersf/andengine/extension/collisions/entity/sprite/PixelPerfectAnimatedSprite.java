@@ -3,7 +3,7 @@ package com.makersf.andengine.extension.collisions.entity.sprite;
 import org.andengine.entity.shape.RectangularShape;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.opengl.shader.ShaderProgram;
-import org.andengine.opengl.vbo.VertexBufferObject.DrawType;
+import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import com.makersf.andengine.extension.collisions.entity.shape.IPixelPerfectShape;
