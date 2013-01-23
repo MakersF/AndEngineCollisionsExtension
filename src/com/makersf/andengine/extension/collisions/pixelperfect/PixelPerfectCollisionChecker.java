@@ -1,5 +1,6 @@
 package com.makersf.andengine.extension.collisions.pixelperfect;
 
+
 import org.andengine.entity.shape.RectangularShape;
 import org.andengine.util.adt.transformation.Transformation;
 import org.andengine.util.adt.transformation.TransformationUtils;
@@ -80,5 +81,25 @@ public class PixelPerfectCollisionChecker {
 		}
 		
 		return false;
+	}
+
+	/**
+	 *
+	 * @param pA
+	 * @param pMaskA
+	 * @param pVertices
+	 * @return The index of the first vertex found colliding with the RectangularShape. If none of them collide, it will return -1
+	 */
+	public static int checkCollsion(final RectangularShape pA, final IPixelPerfectMask pMaskA, final float[] pVertices) {
+		final Transformation sceneToLoc = pA.getSceneToLocalTransformation();
+		final float[] currentVertex = new float[2];
+
+		for(int i = 0; i < pVertices.length; i += 2) {
+			TransformationUtils.transform(sceneToLoc, pVertices[i], pVertices[i+1], currentVertex);
+			if( pMaskA.isSolid( (int) currentVertex[0], (int) currentVertex[1]))
+				return i/2;
+		}
+
+		return -1;
 	}
 }
