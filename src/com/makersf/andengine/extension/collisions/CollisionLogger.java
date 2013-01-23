@@ -11,6 +11,7 @@ import android.util.Log;
  */
 public class CollisionLogger {
 
+	private final String mName;
 	private long mCollisionStartTime;
 
 	private long mTotalSuccesfullCollisionTime;
@@ -23,7 +24,10 @@ public class CollisionLogger {
 	private long mMinUnsuccesfullTime = Long.MAX_VALUE;
 	private long mMaxUnsuccesfullTime;
 
-	
+	public CollisionLogger(String pName) {
+		mName = pName;
+	}
+
 	private long getCurrentTime() {
 		return SystemClock.elapsedRealtime();
 	}
@@ -52,7 +56,7 @@ public class CollisionLogger {
 	}
 	
 	public void printStatistics(boolean pResetStatistics) {
-		Log.i("COLLISION_LOGGER", (mSuccesfullCollisions + mUnsuccesfullCollisions) + " in " + (mTotalSuccesfullCollisionTime + mTotalUnsuccesfullCollisionTime) + " ms, Avarage: " + (((float) mTotalSuccesfullCollisionTime + (float) mTotalUnsuccesfullCollisionTime)/((float) mSuccesfullCollisions + (float) mUnsuccesfullCollisions)) + " ms. \n" +
+		Log.i(mName, (mSuccesfullCollisions + mUnsuccesfullCollisions) + " in " + (mTotalSuccesfullCollisionTime + mTotalUnsuccesfullCollisionTime) + " ms, Avarage: " + (((float) mTotalSuccesfullCollisionTime + (float) mTotalUnsuccesfullCollisionTime)/((float) mSuccesfullCollisions + (float) mUnsuccesfullCollisions)) + " ms. \n" +
 				mSuccesfullCollisions + " succesfull collisions in " + mTotalSuccesfullCollisionTime + " ms. Min: " + mMinSuccesfullTime + ", Max: " + mMaxSuccesfullTime + ", Avarage: " + ((float) mTotalSuccesfullCollisionTime)/((float) mSuccesfullCollisions) + ".\n" +
 				mUnsuccesfullCollisions + " unsuccesfull collisions in " + mTotalUnsuccesfullCollisionTime + " ms. Min: " + mMinUnsuccesfullTime + ", Max: " + mMaxUnsuccesfullTime + ", Avarage: " + ((float) mTotalUnsuccesfullCollisionTime)/((float) mUnsuccesfullCollisions) + ".");
 		if(pResetStatistics) {			
