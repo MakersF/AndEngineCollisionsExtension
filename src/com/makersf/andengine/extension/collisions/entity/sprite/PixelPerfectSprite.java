@@ -1,6 +1,7 @@
 package com.makersf.andengine.extension.collisions.entity.sprite;
 
-import org.andengine.entity.shape.RectangularShape;
+import org.andengine.entity.primitive.Rectangle;
+import org.andengine.entity.shape.IShape;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.shader.ShaderProgram;
 import org.andengine.opengl.vbo.DrawType;
@@ -48,14 +49,17 @@ public class PixelPerfectSprite extends Sprite implements IPixelPerfectShape{
 		return ((PixelPerfectTextureRegion)mTextureRegion).getPixelMask();
 	}
 	
-	public boolean collidesWith(final RectangularShape pOtherShape) {
+	public boolean collidesWith(final IShape pOtherShape) {
 		if(super.collidesWith(pOtherShape))
 		{
 			if(pOtherShape instanceof IPixelPerfectShape)
 				return PixelPerfectCollisionChecker.checkCollision(this, this.getPixelPerfectMask(), pOtherShape, ((IPixelPerfectShape)pOtherShape).getPixelPerfectMask());
 			else
 			{
-				if(!USE_PIXELPERFECT_COLLISION_FOR_EVERY_RECTANGULAR_SHAPE)
+				if(!(
+						USE_PIXELPERFECT_COLLISION_FOR_EVERY_RECTANGULAR_SHAPE &&
+						(pOtherShape instanceof Rectangle || pOtherShape instanceof Sprite))
+					)
 					return true;
 				
 				RectangularPixelPerfectMaskPool rectangularPixelPerfectMaskPool = RectangularPixelPerfectMaskPool.getInstance();
