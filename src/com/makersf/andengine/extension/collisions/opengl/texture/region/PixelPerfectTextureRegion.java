@@ -45,7 +45,7 @@ public class PixelPerfectTextureRegion extends TextureRegion {
 
 	public void buildMask(IBitmapTextureAtlasSource pTextureSource, final int pAlphaThreshold, final Config pBitmapConfig) {
 		Bitmap bitmap = pTextureSource.onLoadBitmap(pBitmapConfig);
-		if(mRotated)
+		if(!mRotated)
 			mMask = new BitmapPixelPerfectMask(bitmap, 0, 0, mTextureWidth, mTextureHeight, pAlphaThreshold);
 		else
 			mMask = new BitmapPixelPerfectMask(bitmap, 0, 0, mTextureHeight, mTextureWidth, pAlphaThreshold);
