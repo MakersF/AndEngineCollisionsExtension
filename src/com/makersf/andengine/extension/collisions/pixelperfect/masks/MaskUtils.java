@@ -38,6 +38,7 @@ public class MaskUtils {
 
 				bmp.compress(CompressFormat.PNG, 100, fos);
 				bmp.recycle();
+				fos.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
