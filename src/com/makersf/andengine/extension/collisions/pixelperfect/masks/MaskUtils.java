@@ -23,6 +23,8 @@ import android.os.Environment;
  */
 public class MaskUtils {
 
+	private static final int HEADER_INTESTATION = ('M' << 24) | ('A' << 16) | ('S' << 8) | ('K');
+
 	public static void writeMaskToSDCardAsImage(IPixelPerfectMask pMask, String pRelativePathFromSDRoot, String pFileName) throws IOException {
 		String state = Environment.getExternalStorageState();
 
@@ -65,11 +67,19 @@ public class MaskUtils {
 				FileOutputStream fos = new FileOutputStream(file);
 				DataOutputStream dos = new DataOutputStream(fos);
 
-				ByteBuffer byteBuffer = ByteBuffer.allocate(pMask.getWidth() * pMask.getHeight() / DataConstants.BITS_PER_BYTE + 3 * DataConstants.BYTES_PER_INT);
+				ByteBuffer byteBuffer = ByteBuffer.allocate(pMask.getWidth() * pMask.getHeight() / DataConstants.BITS_PER_BYTE + 4 * DataConstants.BYTES_PER_INT);
 				byteBuffer.position(0);
 
+				int headerInfo;
 				//an int in order to store version, flags or other information in the future
-				byteBuffer.putInt(0);
+				/*
+				 * first byte = version number
+				 * 23° bit = endianess (1 = big endian)
+				 * the remaining 22 bit are free for future use.
+				 */
+				headerInfo = (1 << 24) | (1 << 23);
+				byteBuffer.putInt(HEADER_INTESTATION);
+				byteBuffer.putInt(headerInfo);
 				byteBuffer.putInt(pMask.getWidth());
 				byteBuffer.putInt(pMask.getHeight());
 
@@ -107,9 +117,14 @@ public class MaskUtils {
 				FileInputStream fis = new FileInputStream(file);
 				DataInputStream dis = new DataInputStream(fis);
 
-				final int flags = dis.readInt();
-				if(flags != 0)
-					throw new IOException("Corrupted file or from an uncompatible version.");
+				final int headerIntestation = dis.readInt();
+				if(headerIntestation != HEADER_INTESTATION)
+					throw new IOException("The file is not a valid mask file.");
+
+				final int headerInfos = dis.readInt();
+				if((headerInfos & 0xff000000) >> 24 != 1)
+					throw new IOException("Unsupported mask version.");
+
 				final int width = dis.readInt();
 				final int height = dis.readInt();
 
