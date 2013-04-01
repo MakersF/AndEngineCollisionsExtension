@@ -8,7 +8,6 @@ import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSourc
 import org.andengine.opengl.texture.atlas.bitmap.source.ResourceBitmapTextureAtlasSource;
 import org.andengine.util.call.Callback;
 
-import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 
@@ -62,18 +61,18 @@ public class PixelPerfectTextureRegionFactory{
 	 * @param pAlphaThreshold Must be between 0 and 255. If the alpha of the pixel > pAlphaThreshold the pixel is set not-colliding
 	 * @return
 	 */
-	public static PixelPerfectTextureRegion createFromAsset(final BitmapTextureAtlas pTexture, final Context pContext, final String pAssetPath, final int pTexturePositionX, final int pTexturePositionY, final int pAlphaThreshold) {
-        final IBitmapTextureAtlasSource textureSource = AssetBitmapTextureAtlasSource.create(pContext.getAssets(), sAssetBasePath + pAssetPath);
+	public static PixelPerfectTextureRegion createFromAsset(final BitmapTextureAtlas pTexture, final AssetManager pAssetManager, final String pAssetPath, final int pTexturePositionX, final int pTexturePositionY, final int pAlphaThreshold) {
+        final IBitmapTextureAtlasSource textureSource = AssetBitmapTextureAtlasSource.create(pAssetManager, sAssetBasePath + pAssetPath);
         return createFromSource(pTexture, textureSource, pTexturePositionX, pTexturePositionY, false, pAlphaThreshold);
     }
 	
-    public static PixelPerfectTextureRegion createFromAsset(final BitmapTextureAtlas pTexture, final Context pContext, final String pAssetPath, final int pTexturePositionX, final int pTexturePositionY, final boolean pRotated, final int pAlphaThreshold) {
-        final IBitmapTextureAtlasSource textureSource = AssetBitmapTextureAtlasSource.create(pContext.getAssets(), sAssetBasePath + pAssetPath);
+    public static PixelPerfectTextureRegion createFromAsset(final BitmapTextureAtlas pTexture, final AssetManager pAssetManager, final String pAssetPath, final int pTexturePositionX, final int pTexturePositionY, final boolean pRotated, final int pAlphaThreshold) {
+        final IBitmapTextureAtlasSource textureSource = AssetBitmapTextureAtlasSource.create(pAssetManager, sAssetBasePath + pAssetPath);
         return createFromSource(pTexture, textureSource, pTexturePositionX, pTexturePositionY, pRotated, pAlphaThreshold);
     }
     
-    public static PixelPerfectTiledTextureRegion createTiledFromAsset(final BitmapTextureAtlas pTexture, final Context pContext, final String pAssetPath, final int pTexturePositionX, final int pTexturePositionY, final int pTileColumns, final int pTileRows, final int pAlphaThreshold) {
-        final IBitmapTextureAtlasSource textureSource = AssetBitmapTextureAtlasSource.create(pContext.getAssets(), sAssetBasePath + pAssetPath);
+    public static PixelPerfectTiledTextureRegion createTiledFromAsset(final BitmapTextureAtlas pTexture, final AssetManager pAssetManager, final String pAssetPath, final int pTexturePositionX, final int pTexturePositionY, final int pTileColumns, final int pTileRows, final int pAlphaThreshold) {
+        final IBitmapTextureAtlasSource textureSource = AssetBitmapTextureAtlasSource.create(pAssetManager, sAssetBasePath + pAssetPath);
         return createTiledFromSource(pTexture, textureSource, pTexturePositionX, pTexturePositionY, pTileColumns, pTileRows, pAlphaThreshold);
     }
     
