@@ -18,6 +18,7 @@ public class BitmapChunkAdapterGLES1 implements IBitmap {
 
 	@Override
 	public int getPixel(int x, int y) {
+		// The texture must be flipped vertically due the coordinate systems differences
 		final int offsetFromTextureY = y - mTextureY;
 		final int correctY = mTextureY + (mTextureHeight - offsetFromTextureY);
 		return mBitmap.getPixel(x, correctY);

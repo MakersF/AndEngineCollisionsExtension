@@ -37,12 +37,12 @@ public class TransformationAdapter {
 
 	public static com.makersf.andengine.extension.collisions.pixelperfect.Transformation adapt(Transformation pTransform) {
 		try {
-			final float a = aField.getFloat(pTransform);
-			final float b = bField.getFloat(pTransform);
-			final float c = cField.getFloat(pTransform);
-			final float d = dField.getFloat(pTransform);
-			final float tx = txField.getFloat(pTransform);
-			final float ty = tyField.getFloat(pTransform);
+			final float a = aField.getFloat(pTransform); /* x scale */
+			final float b = bField.getFloat(pTransform); /* y skew */
+			final float c = cField.getFloat(pTransform); /* x skew */
+			final float d = dField.getFloat(pTransform); /* y scale */
+			final float tx = txField.getFloat(pTransform); /* x translation */
+			final float ty = tyField.getFloat(pTransform); /* y translation */
 			
 			//it's not a typo that they are not in order!
 			return new com.makersf.andengine.extension.collisions.pixelperfect.Transformation(a, d, b, c, tx, ty);
