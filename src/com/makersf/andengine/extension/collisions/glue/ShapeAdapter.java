@@ -2,9 +2,10 @@ package com.makersf.andengine.extension.collisions.glue;
 
 import org.andengine.entity.shape.IShape;
 
-import com.makersf.andengine.extension.collisions.pixelperfect.Transformation;
+import com.makersf.frameworks.collisioncore.pixelperfect.Transformation;
 
-public class ShapeAdapter implements com.makersf.andengine.extension.collisions.pixelperfect.IShape {
+
+public class ShapeAdapter implements com.makersf.frameworks.collisioncore.pixelperfect.IShape {
 
 	private final IShape mShape;
 

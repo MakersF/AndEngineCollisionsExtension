@@ -8,8 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
 import com.makersf.andengine.extension.collisions.glue.BitmapChunkAdapterGLES2;
-import com.makersf.andengine.extension.collisions.pixelperfect.masks.BitmapPixelPerfectMask;
-import com.makersf.andengine.extension.collisions.pixelperfect.masks.IBitmap;
+import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.BitmapPixelPerfectMask;
+import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.IBitmap;
 
 /**
  * 

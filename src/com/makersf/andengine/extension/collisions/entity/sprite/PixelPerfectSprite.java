@@ -11,10 +11,10 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import com.makersf.andengine.extension.collisions.entity.shape.IPixelPerfectShape;
 import com.makersf.andengine.extension.collisions.glue.ShapeAdapter;
 import com.makersf.andengine.extension.collisions.opengl.texture.region.PixelPerfectTextureRegion;
-import com.makersf.andengine.extension.collisions.pixelperfect.PixelPerfectCollisionChecker;
-import com.makersf.andengine.extension.collisions.pixelperfect.masks.IPixelPerfectMask;
-import com.makersf.andengine.extension.collisions.pixelperfect.masks.RectangularPixelPerfectMask;
-import com.makersf.andengine.extension.collisions.pixelperfect.masks.RectangularPixelPerfectMaskPool;
+import com.makersf.frameworks.collisioncore.pixelperfect.PixelPerfectCollisionChecker;
+import com.makersf.frameworks.collisioncore.pixelperfect.masks.IPixelPerfectMask;
+import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.RectangularPixelPerfectMask;
+import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.RectangularPixelPerfectMaskPool;
 
 /**
  * 

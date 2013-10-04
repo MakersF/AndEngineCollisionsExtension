@@ -35,7 +35,7 @@ public class TransformationAdapter {
 		}
 	}
 
-	public static com.makersf.andengine.extension.collisions.pixelperfect.Transformation adapt(Transformation pTransform) {
+	public static com.makersf.frameworks.collisioncore.pixelperfect.Transformation adapt(Transformation pTransform) {
 		try {
 			final float a = aField.getFloat(pTransform); /* x scale */
 			final float b = bField.getFloat(pTransform); /* y skew */
@@ -45,7 +45,7 @@ public class TransformationAdapter {
 			final float ty = tyField.getFloat(pTransform); /* y translation */
 			
 			//it's not a typo that they are not in order!
-			return new com.makersf.andengine.extension.collisions.pixelperfect.Transformation(a, d, b, c, tx, ty);
+			return new com.makersf.frameworks.collisioncore.pixelperfect.Transformation(a, d, b, c, tx, ty);
 		} catch (IllegalArgumentException e) {
 			throw new RuntimeException("Should never happen: Java already check that the type passed is a Transformation!", e);
 		} catch (IllegalAccessException e) {
