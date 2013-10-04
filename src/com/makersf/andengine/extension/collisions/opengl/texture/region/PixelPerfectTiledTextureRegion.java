@@ -89,13 +89,13 @@ public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 		if(mMasks[mCurrentTileIndex] != null)
 			return mMasks[mCurrentTileIndex];
 		else
-			throw new IllegalAccessError("The mask has not build yet");
+			throw new IllegalAccessError("The mask has not been build yet");
 	}
 	
 	public BitmapPixelPerfectMask getPixelMask(final int pTileIndex) {
 		if(mMasks[pTileIndex] != null)
 			return mMasks[pTileIndex];
 		else
-			throw new IllegalAccessError("The mask has not build yet");
+			throw new IllegalAccessError("The mask has not been build yet");
 	}
 }

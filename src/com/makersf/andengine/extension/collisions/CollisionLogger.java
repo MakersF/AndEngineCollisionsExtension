@@ -55,20 +55,21 @@ public class CollisionLogger {
 		}
 	}
 	
-	public void printStatistics(boolean pResetStatistics) {
+	public void printStatistics() {
 		Log.i(mName, (mSuccesfullCollisions + mUnsuccesfullCollisions) + " in " + (mTotalSuccesfullCollisionTime + mTotalUnsuccesfullCollisionTime) + " ms, Avarage: " + (((float) mTotalSuccesfullCollisionTime + (float) mTotalUnsuccesfullCollisionTime)/((float) mSuccesfullCollisions + (float) mUnsuccesfullCollisions)) + " ms. \n" +
 				mSuccesfullCollisions + " succesfull collisions in " + mTotalSuccesfullCollisionTime + " ms. Min: " + mMinSuccesfullTime + ", Max: " + mMaxSuccesfullTime + ", Avarage: " + ((float) mTotalSuccesfullCollisionTime)/((float) mSuccesfullCollisions) + ".\n" +
 				mUnsuccesfullCollisions + " unsuccesfull collisions in " + mTotalUnsuccesfullCollisionTime + " ms. Min: " + mMinUnsuccesfullTime + ", Max: " + mMaxUnsuccesfullTime + ", Avarage: " + ((float) mTotalUnsuccesfullCollisionTime)/((float) mUnsuccesfullCollisions) + ".");
-		if(pResetStatistics) {			
-			mTotalSuccesfullCollisionTime = 0;
-			mSuccesfullCollisions = 0;
-			mMinSuccesfullTime = Long.MAX_VALUE;
-			mMaxSuccesfullTime = 0;
-			
-			mTotalUnsuccesfullCollisionTime = 0;
-			mUnsuccesfullCollisions = 0;
-			mMinUnsuccesfullTime = Long.MAX_VALUE;
-			mMaxUnsuccesfullTime = 0;
-		}
+	}
+
+	public void reset() {
+		mTotalSuccesfullCollisionTime = 0;
+		mSuccesfullCollisions = 0;
+		mMinSuccesfullTime = Long.MAX_VALUE;
+		mMaxSuccesfullTime = 0;
+
+		mTotalUnsuccesfullCollisionTime = 0;
+		mUnsuccesfullCollisions = 0;
+		mMinUnsuccesfullTime = Long.MAX_VALUE;
+		mMaxUnsuccesfullTime = 0;
 	}
 }

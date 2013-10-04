@@ -20,6 +20,7 @@ public class CustomPixelPerfectMask implements IPixelPerfectMask {
 		}
 	}
 
+	@Override
 	public boolean isSolid(final int pX, final int pY) {
 		if(0 <= pX && pX < mBitsBlock.length &&
 				0 <= pY && pY < mBitsBlock[0].length)
@@ -35,6 +36,6 @@ public class CustomPixelPerfectMask implements IPixelPerfectMask {
 
 	@Override
 	public int getHeight() {
-		return mBitsBlock[0].length;
+		return getWidth() > 0 ? mBitsBlock[0].length : 0;
 	}
 }
