@@ -8,7 +8,9 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 import android.graphics.Bitmap.Config;
 
+import com.makersf.andengine.extension.collisions.glue.BitmapChunkAdapterGLES2;
 import com.makersf.andengine.extension.collisions.pixelperfect.masks.BitmapPixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.masks.IBitmap;
 
 /**
  * 
@@ -54,11 +56,11 @@ public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 				final int tileIndex = tileRow * pTileColumns + tileColumn;
 				final int x = pTextureX + tileColumn * tileWidth;
 				final int y = pTextureY + tileRow * tileHeight;
-				
+				IBitmap bitmap = new BitmapChunkAdapterGLES2(pTextureSource.onLoadBitmap(pBitmapConfig));
 				if(!pRotated)
-					mMasks[tileIndex] = new BitmapPixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), x, y, tileWidth, tileHeight, pAlphaThreshold);
+					mMasks[tileIndex] = new BitmapPixelPerfectMask(bitmap, x, y, tileWidth, tileHeight, pAlphaThreshold);
 				else
-					mMasks[tileIndex] = new BitmapPixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), y, x, tileHeight, tileWidth, pAlphaThreshold);
+					mMasks[tileIndex] = new BitmapPixelPerfectMask(bitmap, y, x, tileHeight, tileWidth, pAlphaThreshold);
 			}
 		}
 	}
@@ -66,10 +68,11 @@ public class PixelPerfectTiledTextureRegion extends TiledTextureRegion {
 	public void buildTileMask(final int pTileIndex, final IBitmapTextureAtlasSource pTextureSource, final boolean pRotated, final int pAlphaThreshold, final Config pBitmapConfig) {
 		if(mMasks == null)
 			mMasks = new BitmapPixelPerfectMask[mTileCount];
+		IBitmap bitmap = new BitmapChunkAdapterGLES2(pTextureSource.onLoadBitmap(pBitmapConfig));
 		if(!pRotated)
-			mMasks[pTileIndex] = new BitmapPixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), getTextureX(pTileIndex), getTextureY(pTileIndex), getWidth(pTileIndex), getHeight(pTileIndex), pAlphaThreshold);
+			mMasks[pTileIndex] = new BitmapPixelPerfectMask(bitmap, getTextureX(pTileIndex), getTextureY(pTileIndex), getWidth(pTileIndex), getHeight(pTileIndex), pAlphaThreshold);
 		else
-			mMasks[pTileIndex] = new BitmapPixelPerfectMask(pTextureSource.onLoadBitmap(pBitmapConfig), getTextureY(pTileIndex),getTextureX(pTileIndex), getHeight(pTileIndex), getWidth(pTileIndex), pAlphaThreshold);
+			mMasks[pTileIndex] = new BitmapPixelPerfectMask(bitmap, getTextureY(pTileIndex),getTextureX(pTileIndex), getHeight(pTileIndex), getWidth(pTileIndex), pAlphaThreshold);
 	}
 	
 	@Override

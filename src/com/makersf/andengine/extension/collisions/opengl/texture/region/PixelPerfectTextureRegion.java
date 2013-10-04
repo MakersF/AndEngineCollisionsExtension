@@ -7,7 +7,9 @@ import org.andengine.opengl.texture.region.TextureRegion;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
+import com.makersf.andengine.extension.collisions.glue.BitmapChunkAdapterGLES2;
 import com.makersf.andengine.extension.collisions.pixelperfect.masks.BitmapPixelPerfectMask;
+import com.makersf.andengine.extension.collisions.pixelperfect.masks.IBitmap;
 
 /**
  * 
@@ -40,11 +42,12 @@ public class PixelPerfectTextureRegion extends TextureRegion {
 			float pTextureY, float pTextureWidth, float pTextureHeight, boolean pRotated, BitmapPixelPerfectMask pMask) {
 		super(pTexture, pTextureX, pTextureY, pTextureWidth, pTextureHeight, SCALE_DEFAULT,
 				pRotated);
-		this.mMask = pMask;//no need to make a copy of it since it is never changed
+		this.mMask = pMask;//no need to make a copy of it since it never change
 	}
 
 	public void buildMask(IBitmapTextureAtlasSource pTextureSource, final int pAlphaThreshold, final Config pBitmapConfig) {
-		Bitmap bitmap = pTextureSource.onLoadBitmap(pBitmapConfig);
+		Bitmap originalBitmap = pTextureSource.onLoadBitmap(pBitmapConfig);
+		IBitmap bitmap = new BitmapChunkAdapterGLES2(originalBitmap);
 		if(!mRotated)
 			mMask = new BitmapPixelPerfectMask(bitmap, 0, 0, mTextureWidth, mTextureHeight, pAlphaThreshold);
 		else

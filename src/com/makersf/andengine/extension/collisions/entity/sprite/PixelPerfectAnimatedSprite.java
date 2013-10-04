@@ -10,6 +10,7 @@ import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import com.makersf.andengine.extension.collisions.entity.shape.IPixelPerfectShape;
+import com.makersf.andengine.extension.collisions.glue.ShapeAdapter;
 import com.makersf.andengine.extension.collisions.opengl.texture.region.PixelPerfectTiledTextureRegion;
 import com.makersf.andengine.extension.collisions.pixelperfect.PixelPerfectCollisionChecker;
 import com.makersf.andengine.extension.collisions.pixelperfect.masks.IPixelPerfectMask;
@@ -87,7 +88,7 @@ public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixel
 		if(super.collidesWith(pOtherShape))
 		{
 			if(pOtherShape instanceof IPixelPerfectShape)
-				return PixelPerfectCollisionChecker.checkCollision(this, this.getPixelPerfectMask(), pOtherShape, ((IPixelPerfectShape)pOtherShape).getPixelPerfectMask());
+				return PixelPerfectCollisionChecker.checkCollision(new ShapeAdapter(this), this.getPixelPerfectMask(), new ShapeAdapter(pOtherShape), ((IPixelPerfectShape)pOtherShape).getPixelPerfectMask());
 			else
 			{
 				if(!(
@@ -101,7 +102,7 @@ public class PixelPerfectAnimatedSprite extends AnimatedSprite implements IPixel
 				RectangularPixelPerfectMask reusableRectangularPixelPerfectMask = rectangularPixelPerfectMaskPool.obtainPoolItem();
 				reusableRectangularPixelPerfectMask.setTo((int) pOtherShape.getWidth(), (int) pOtherShape.getHeight());
 				
-				boolean result = PixelPerfectCollisionChecker.checkCollision(this, this.getPixelPerfectMask(), pOtherShape, reusableRectangularPixelPerfectMask);
+				boolean result = PixelPerfectCollisionChecker.checkCollision(new ShapeAdapter(this), this.getPixelPerfectMask(), new ShapeAdapter(pOtherShape), reusableRectangularPixelPerfectMask);
 				
 				rectangularPixelPerfectMaskPool.recyclePoolItem(reusableRectangularPixelPerfectMask);
 				
