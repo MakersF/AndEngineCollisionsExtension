@@ -107,7 +107,7 @@ public class MaskUtils {
 		}
 	}
 
-	public static CustomPixelPerfectMask readMaskFromSDCardAsBytes(String pRelativePathFromSDRoot, String pFileName) throws IOException {
+	public static IPixelPerfectMask readMaskFromSDCardAsBytes(String pRelativePathFromSDRoot, String pFileName, IPixelPerfectMaskFactory pFactory) throws IOException {
 		String state = Environment.getExternalStorageState();
 
 		if (Environment.MEDIA_MOUNTED.equals(state)) {
@@ -118,12 +118,16 @@ public class MaskUtils {
 				DataInputStream dis = new DataInputStream(fis);
 
 				final int headerIntestation = dis.readInt();
-				if(headerIntestation != HEADER_INTESTATION)
+				if(headerIntestation != HEADER_INTESTATION) {
+					dis.close();
 					throw new IOException("The file is not a valid mask file.");
+				}
 
 				final int headerInfos = dis.readInt();
-				if((headerInfos & 0xff000000) >> 24 != 1)
+				if((headerInfos & 0xff000000) >> 24 != 1) {
+					dis.close();
 					throw new IOException("Unsupported mask version.");
+				}
 
 				final int width = dis.readInt();
 				final int height = dis.readInt();
@@ -134,13 +138,17 @@ public class MaskUtils {
 
 				ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
 
-				return new CustomPixelPerfectMask(width, height, byteBuffer);
+				return pFactory.getIPixelPerfectMask(width, height, byteBuffer);
 			} catch (IOException e) {
 				throw e;
 			}
 		} else {
 			throw new IOException("The external storage is not mounted. " + state);
 		}
+	}
+
+	public static IPixelPerfectMask readMaskFromSDCardAsBytes(String pRelativePathFromSDRoot, String pFileName) throws IOException {
+		return readMaskFromSDCardAsBytes(pRelativePathFromSDRoot, pFileName, new PixelPerfectMaskFactory());
 	}
 
 	public static boolean compare(IPixelPerfectMask pA, IPixelPerfectMask pB) {
