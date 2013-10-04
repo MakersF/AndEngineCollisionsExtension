@@ -6,6 +6,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSource;
 import org.andengine.opengl.texture.atlas.bitmap.source.ResourceBitmapTextureAtlasSource;
+import org.andengine.opengl.texture.bitmap.BitmapTextureFormat;
 import org.andengine.util.call.Callback;
 
 import android.content.res.AssetManager;
@@ -130,7 +131,8 @@ public class PixelPerfectTextureRegionFactory{
 			@Override
 			public void onCallback(final IBitmapTextureAtlasSource pCallbackValue) {
 				textureRegion.setTexturePosition(pCallbackValue.getTextureX(), pCallbackValue.getTextureY());
-				textureRegion.buildMask(pCallbackValue, pAlphaThreshold, pBuildableBitmapTextureAtlas.getBitmapTextureFormat().getBitmapConfig());
+				BitmapTextureFormat bitmatTextureFormat = BitmapTextureFormat.fromPixelFormat(pBuildableBitmapTextureAtlas.getPixelFormat());
+				textureRegion.buildMask(pCallbackValue, pAlphaThreshold, bitmatTextureFormat.getBitmapConfig());
 			}
 		});
 		return textureRegion;
@@ -152,7 +154,8 @@ public class PixelPerfectTextureRegionFactory{
 						final int y = pCallbackValue.getTextureY() + tileRow * tileHeight;
 						
 						tiledTextureRegion.setTexturePosition(tileIndex, x, y);
-						tiledTextureRegion.buildTileMask(tileIndex, pCallbackValue, pRotated, pAlphaThreshold, pBuildableTextureAtlas.getBitmapTextureFormat().getBitmapConfig());
+						BitmapTextureFormat bitmatTextureFormat = BitmapTextureFormat.fromPixelFormat(pBuildableTextureAtlas.getPixelFormat());
+						tiledTextureRegion.buildTileMask(tileIndex, pCallbackValue, pRotated, pAlphaThreshold, bitmatTextureFormat.getBitmapConfig());
 					}
 				}
 				
