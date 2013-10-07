@@ -1,8 +1,8 @@
-package com.makersf.andengine.extension.collisions.glue;
+package com.makersf.andengine.extension.collisions.bindings;
 
 import android.graphics.Bitmap;
 
-import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.IBitmap;
+import com.makersf.frameworks.shared.collisioncore.pixelperfect.masks.implementations.IBitmap;
 
 public class BitmapChunkAdapterGLES2 implements IBitmap {
 

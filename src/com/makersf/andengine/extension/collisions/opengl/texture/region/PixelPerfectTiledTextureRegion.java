@@ -8,9 +8,9 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 import android.graphics.Bitmap.Config;
 
-import com.makersf.andengine.extension.collisions.glue.BitmapChunkAdapterGLES2;
-import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.BitmapPixelPerfectMask;
-import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.IBitmap;
+import com.makersf.andengine.extension.collisions.bindings.BitmapChunkAdapterGLES2;
+import com.makersf.frameworks.shared.collisioncore.pixelperfect.masks.implementations.BitmapPixelPerfectMask;
+import com.makersf.frameworks.shared.collisioncore.pixelperfect.masks.implementations.IBitmap;
 
 /**
  * 

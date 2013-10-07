@@ -9,13 +9,13 @@ import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
+import com.makersf.andengine.extension.collisions.bindings.ShapeAdapter;
 import com.makersf.andengine.extension.collisions.entity.shape.IPixelPerfectShape;
-import com.makersf.andengine.extension.collisions.glue.ShapeAdapter;
 import com.makersf.andengine.extension.collisions.opengl.texture.region.PixelPerfectTiledTextureRegion;
-import com.makersf.frameworks.collisioncore.pixelperfect.PixelPerfectCollisionChecker;
-import com.makersf.frameworks.collisioncore.pixelperfect.masks.IPixelPerfectMask;
-import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.RectangularPixelPerfectMask;
-import com.makersf.frameworks.collisioncore.pixelperfect.masks.implementations.RectangularPixelPerfectMaskPool;
+import com.makersf.frameworks.shared.collisioncore.pixelperfect.PixelPerfectCollisionChecker;
+import com.makersf.frameworks.shared.collisioncore.pixelperfect.masks.IPixelPerfectMask;
+import com.makersf.frameworks.shared.collisioncore.pixelperfect.masks.implementations.RectangularPixelPerfectMask;
+import com.makersf.frameworks.shared.collisioncore.pixelperfect.masks.implementations.RectangularPixelPerfectMaskPool;
 
 
 /**
