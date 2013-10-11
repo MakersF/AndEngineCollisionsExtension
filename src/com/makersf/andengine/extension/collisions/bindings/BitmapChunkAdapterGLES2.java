@@ -13,8 +13,11 @@ public class BitmapChunkAdapterGLES2 implements IBitmap {
 	}
 
 	@Override
-	public int getPixel(int x, int y) {
-		return mBitmap.getPixel(x, y);
+	public int getPixel(int offsetX, int offsetY, int baseX, int baseY,
+			int width, int height) {
+		int x = baseX + offsetX;
+		int flippedY = baseY + height - offsetY;
+		return mBitmap.getPixel(x, flippedY);
 	}
 
 }

@@ -7,22 +7,18 @@ import android.graphics.Bitmap;
 
 public class BitmapChunkAdapterGLES1 implements IBitmap {
 
-	private final int mTextureY;
-	private final int mTextureHeight;
 	private final Bitmap mBitmap;
 
-	public BitmapChunkAdapterGLES1(Bitmap pBitmap, int pTextureY, int pTextureHeight) {
+	public BitmapChunkAdapterGLES1(Bitmap pBitmap) {
 		mBitmap = pBitmap;
-		mTextureY = pTextureY;
-		mTextureHeight = pTextureHeight;
 	}
 
 	@Override
-	public int getPixel(int x, int y) {
-		// The texture must be flipped vertically due the coordinate systems differences
-		final int offsetFromTextureY = y - mTextureY;
-		final int correctY = mTextureY + (mTextureHeight - offsetFromTextureY);
-		return mBitmap.getPixel(x, correctY);
+	public int getPixel(int offsetX, int offsetY, int baseX, int baseY,
+			int width, int height) {
+		int y = baseY + offsetY;
+		int x = baseX + offsetX;
+		return mBitmap.getPixel(x, y);
 	}
 
 }
