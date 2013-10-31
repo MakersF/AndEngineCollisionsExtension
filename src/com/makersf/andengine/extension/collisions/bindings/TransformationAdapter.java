@@ -29,7 +29,7 @@ public class TransformationAdapter {
 			txField.setAccessible(true);
 			tyField.setAccessible(true);
 		} catch (NoSuchFieldException e) {
-			Log.e("AndEngineCollisionExtension", "The implementation fo Transformation changed. " +
+			Log.e("AndEngineCollisionExtension", "The implementation of Transformation changed. " +
 					"Wait for a new update of the library or revert to a previous update of AndEngine. " +
 					"Or you can always reimplement this code!");
 		}
@@ -45,7 +45,7 @@ public class TransformationAdapter {
 			final float ty = tyField.getFloat(pTransform); /* y translation */
 			
 			//it's not a typo that they are not in order!
-			return new com.makersf.frameworks.shared.collisioncore.pixelperfect.Transformation(a, d, b, c, tx, ty);
+			return new com.makersf.frameworks.shared.collisioncore.pixelperfect.Transformation(a, d, c, b, tx, ty);
 		} catch (IllegalArgumentException e) {
 			throw new RuntimeException("Should never happen: Java already check that the type passed is a Transformation!", e);
 		} catch (IllegalAccessException e) {
